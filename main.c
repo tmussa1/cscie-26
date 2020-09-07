@@ -2,9 +2,14 @@
 #include <limits.h>
 #include <mem.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int determineMonth(char date[20]);
+void findDifferenceBetweenTwoDates();
+void readNumbersAndCalculateMinMaxSum(int size);
+void readFromFileAndCountLetters(char * fileLocation);
 
+//Question 1
 void readNumbersAndCalculateMinMaxSum(int size){
 
     int numbers[size];
@@ -42,6 +47,7 @@ void readNumbersAndCalculateMinMaxSum(int size){
 
 }
 
+//Question 2
 void findDifferenceBetweenTwoDates(){
 
     char firstMonth[20], firstDay[5], secondMonth[20], secondDay[5];
@@ -76,6 +82,7 @@ void findDifferenceBetweenTwoDates(){
 
 }
 
+//Helper method for question 2
 int determineMonth(char date[20]) {
 
     char month[4];
@@ -96,9 +103,56 @@ int determineMonth(char date[20]) {
     return 0;
 }
 
+//Question 5
+void readFromFileAndCountLetters(char * fileLocation){
+    int character;
+    FILE *file;
+    file = fopen(fileLocation, "r");
+
+    char letters[26];
+    long letterCounts [26];
+
+    if (file) {
+        while ((character = getc(file)) != EOF){
+            int index;
+
+            if(tolower(character)  >= 'a' && tolower(character) <= 'z'){
+                index = tolower(character) - 'a';
+                letterCounts[index] += 1L;
+                letters[index] = tolower(character);
+            }
+        }
+        fclose(file);
+    }
+
+    for(int i = 0; i < 26; i++){
+        for(int j = 0; j < 26 - i - 1; j++) {
+            if(letterCounts[j] < letterCounts[j + 1]){
+                long temp = letterCounts[j];
+                char tempLetter = letters[j];
+                letterCounts[j] = letterCounts[j + 1];
+                letters[j] = letters[j + 1];
+                letterCounts[j + 1] = temp;
+                letters[j + 1] = tempLetter;
+            }
+        }
+    }
+
+    for(int i = 0; i < 26; i++){
+        printf("Letters sorted by occurrence: Letter %c, Count %d \n", letters[i], letterCounts[i]);
+    }
+
+    //Reference used - https://stackoverflow.com/questions/31495311/clion-c-cant-read-open-txt-file-in-project-directory
+}
+
 void main() {
 
-    readNumbersAndCalculateMinMaxSum(100);
+    //Please uncomment this method to run one by one
 
-    findDifferenceBetweenTwoDates();
+    //readNumbersAndCalculateMinMaxSum(100);
+
+    //findDifferenceBetweenTwoDates();
+
+    //readFromFileAndCountLetters("C:\\Users\\12028\\Desktop\\MS in CS\\CSCI E-26\\projects\\fileToRead.txt");
+
 }

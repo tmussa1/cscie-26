@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <mem.h>
+#include <stdlib.h>
 
 int determineMonth(char date[20]);
 
@@ -65,13 +66,13 @@ void findDifferenceBetweenTwoDates(){
 
     int result = 0;
 
-    for(int i = firstMonthIndex; i < secondMonthIndex; i++){
+    for(int i = firstMonthIndex + 1; i < secondMonthIndex; i++){
         result += datesInMonths[i];
     }
 
-    result += (datesInMonths[firstMonthIndex - 1] - (int) firstDay) + (int) secondDay;
+    result += (datesInMonths[firstMonthIndex] - atoi(firstDay))+ atoi(secondDay);
 
-    printf("Difference in dates %d ", result);
+    printf("Difference in dates %d \n", result);
 
 }
 
@@ -97,7 +98,7 @@ int determineMonth(char date[20]) {
 
 void main() {
 
-    //readNumbersAndCalculateMinMaxSum(100);
+    readNumbersAndCalculateMinMaxSum(100);
 
     findDifferenceBetweenTwoDates();
 }

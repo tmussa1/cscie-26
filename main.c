@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
-#include <mem.h>
+#include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -146,13 +146,13 @@ void readFromFileAndCountLetters(char * fileLocation){
     }
 
     for(int i = 0; i < 26; i++){
-        printf("Letters sorted by occurrence: Letter %c, Count %d \n", letters[i], letterCounts[i]);
+        printf("Letters sorted by occurrence: Letter %c, Count %ld \n", letters[i], letterCounts[i]);
     }
 
     //Reference used - https://stackoverflow.com/questions/31495311/clion-c-cant-read-open-txt-file-in-project-directory
 }
 
-void main() {
+int main() {
 
     //Please uncomment this method to run one by one
 
@@ -164,4 +164,5 @@ void main() {
 
     //readFromFileAndCountLetters("C:\\Users\\12028\\Desktop\\MS in CS\\CSCI E-26\\projects\\fileToRead.txt");
 
+    return 0;
 }

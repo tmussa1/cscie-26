@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <limits.h>
-#include <mem.h>
+//#include <mem.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 int determineMonth(char date[20]);
 void findDifferenceBetweenTwoDates();

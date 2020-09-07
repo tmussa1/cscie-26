@@ -29,6 +29,7 @@ void readNumbersAndCalculateMinMaxSum(int size){
 
     int max = 0, min = INT_MAX, sum = 0, i = 0;
 
+    //Calculate min, max and sum in one go
     while(numbers[i] != 0) {
 
         if(numbers[i] > max){
@@ -67,15 +68,18 @@ void findDifferenceBetweenTwoDates(){
         scanf("%s", secondDay);
     }
 
+    //Calculate the index in the array for the entered month
     int firstMonthIndex = determineMonth(firstMonth);
     int secondMonthIndex = determineMonth(secondMonth);
 
     int result = 0;
 
+    //The months in between can have their dates added
     for(int i = firstMonthIndex + 1; i < secondMonthIndex; i++){
         result += datesInMonths[i];
     }
 
+    //The 2 entered months have partial dates of a month that is computed
     result += (datesInMonths[firstMonthIndex] - atoi(firstDay))+ atoi(secondDay);
 
     printf("Difference in dates %d \n", result);
@@ -94,6 +98,7 @@ int determineMonth(char date[20]) {
                            "May", "Jun", "Jul", "Aug", "Sep",
                            "Oct", "Nov", "Dec"};
 
+    //It just returns the indexes of the months
     for(int i = 0; i < 12; i++) {
         if (strcmp(month, months[i]) == 0) {
             return i;
@@ -112,6 +117,7 @@ void readFromFileAndCountLetters(char * fileLocation){
     char letters[26];
     long letterCounts [26];
 
+    //Read character by character. The count is stored by alphabetical index
     if (file) {
         while ((character = getc(file)) != EOF){
             int index;
@@ -125,6 +131,7 @@ void readFromFileAndCountLetters(char * fileLocation){
         fclose(file);
     }
 
+    //Bubble sort since only 26 elements to compare
     for(int i = 0; i < 26; i++){
         for(int j = 0; j < 26 - i - 1; j++) {
             if(letterCounts[j] < letterCounts[j + 1]){
@@ -152,6 +159,8 @@ void main() {
     //readNumbersAndCalculateMinMaxSum(100);
 
     //findDifferenceBetweenTwoDates();
+
+    //Please change this directory to yours
 
     //readFromFileAndCountLetters("C:\\Users\\12028\\Desktop\\MS in CS\\CSCI E-26\\projects\\fileToRead.txt");
 
